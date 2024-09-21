@@ -20,7 +20,7 @@ function App() {
     e.preventDefault();
     try {
       const jsonData = JSON.parse(inputData); // Validate JSON
-      const response = await axios.post("http://localhost:5000/bfhl", { data: jsonData.data });
+      const response = await axios.post("https://bfhl-backend-rouge.vercel.app/bfhl", { data: jsonData.data });
       setResponseData(response.data);
       setError(null);
       setShowFilters(true); // Show filters after successful submission
