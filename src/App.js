@@ -7,7 +7,7 @@ function App() {
   const [responseData, setResponseData] = useState(null);
   const [error, setError] = useState(null);
   const [showFilters, setShowFilters] = useState(false); // For controlling filter visibility
-  const [availableFilters, setAvailableFilters] = useState(["alphabets", "numbers", "highest_alphabet"]); // Available filters
+  const [availableFilters, setAvailableFilters] = useState(["alphabets", "numbers", "highest_lowercase"]); // Available filters
   const [selectedFilters, setSelectedFilters] = useState([]); // Selected filters
 
   // Handle Input Change
@@ -21,6 +21,7 @@ function App() {
     try {
       const jsonData = JSON.parse(inputData); // Validate JSON
       const response = await axios.post("https://bfhl-backend-rouge.vercel.app/bfhl", { data: jsonData.data });
+      // const response = await axios.post("http://localhost:5000/bfhl", { data: jsonData.data });
       setResponseData(response.data);
       setError(null);
       setShowFilters(true); // Show filters after successful submission
@@ -50,7 +51,7 @@ function App() {
     const result = {};
     if (selectedFilters.includes("alphabets")) result["Alphabets"] = responseData.alphabets;
     if (selectedFilters.includes("numbers")) result["Numbers"] = responseData.numbers;
-    if (selectedFilters.includes("highest_alphabet")) result["Highest Alphabet"] = responseData.highest_alphabet;
+    if (selectedFilters.includes("highest_lowercase")) result["Highest LowerCase"] = responseData.highest_lowercase_alphabet;
 
     return (
       <div className="response-block">
